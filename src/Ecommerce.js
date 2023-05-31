@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AddProductForm from "./AddProductForm";
 import CartProduct from "./CartProduct";
 import InventoryProduct from "./InventoryProduct";
@@ -14,7 +14,15 @@ export default function EcommerceApp(){
         console.log(product);
         inventoryProducts.push(product);
         setInventoryProducts([...inventoryProducts]);
+        localStorage.setItem("allProducts",JSON.stringify(inventoryProducts));
     }
+
+    useEffect(()=>{
+        let products=localStorage.getItem("allProducts");
+        if(products!=null){
+            setInventoryProducts(JSON.parse(products))
+        }
+    },[])
 
     const onAddToCart=(product)=>{
         let findProduct=cartProducts.filter((item)=>{ return item.id==product.id?true:false });
@@ -41,10 +49,26 @@ export default function EcommerceApp(){
         setGrandTotal(gT);
     }
 
+    const removeFromCart=(index)=>{
+        cartProducts.splice(index,1);
+        setCartProducts([...cartProducts]);
+        calculateTotal();
+    }
+
+    const qtyChange=(index,valueChange)=>{
+        cartProducts[index].quantity= cartProducts[index].quantity+valueChange;
+        if(cartProducts[index].quantity==0){
+            cartProducts.splice(index,1);
+        }
+        setCartProducts([...cartProducts]);
+        calculateTotal();
+    }
+
     return <div>
+        <h2 className="banner">Eazy Cart Project</h2>
         <AddProductForm onAddProducts={onAddProducts}/>
         <InventoryProduct inventoryProducts={inventoryProducts} onAddToCart={onAddToCart}/>
-        <CartProduct cartProducts={cartProducts} />
+        <CartProduct cartProducts={cartProducts} removeFromCart={removeFromCart} qtyChange={qtyChange}/>
         <br/>
         <GrandTotal GrandTotal={grandTotal}/>
     </div>;

@@ -1,3 +1,3 @@
 export default function GrandTotal(props){
-    return <h2>Grand Total : {props.GrandTotal}</h2>
+    return <h2 className="subbanner">Grand Total : {props.GrandTotal}</h2>
 }

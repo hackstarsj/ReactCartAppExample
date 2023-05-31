@@ -1,7 +1,7 @@
 export default function CartProduct(props) {
   return (
     <div>
-      <h2>Cart Products</h2>
+      <h2 className="subbanner">Cart Products</h2>
       <div className="table">
         <table>
           <thead>
@@ -16,17 +16,17 @@ export default function CartProduct(props) {
             </tr>
           </thead>
           <tbody>
-            {props.cartProducts.map((item) => (
+            {props.cartProducts.map((item,index) => (
               <tr key={item.id}>
-                <th>{item.id}</th>
-                <th>{item.product_title}</th>
-                <th>{item.product_description}</th>
-                <th>{item.product_price}</th>
-                <th>{item.quantity}</th>
-                <th>{parseInt(item.product_price) * item.quantity}</th>
-                <th>
-                  <button className="remove_from_cart">REMOVE FROM CART</button>
-                </th>
+                <td>{item.id}</td>
+                <td>{item.product_title}</td>
+                <td>{item.product_description}</td>
+                <td>{item.product_price}</td>
+                <td className="qty"><button className="qty-plus" onClick={()=>props.qtyChange(index,1)}>+</button><span className="qty-span">{item.quantity}</span><button className="qty-minus" onClick={()=>props.qtyChange(index,-1)}>-</button></td>
+                <td>{parseInt(item.product_price) * item.quantity}</td>
+                <td>
+                  <button className="remove_from_cart" onClick={()=>props.removeFromCart(index)}>REMOVE FROM CART</button>
+                </td>
               </tr>
             ))}
           </tbody>

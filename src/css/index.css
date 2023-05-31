@@ -1,0 +1,117 @@
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 1px;
+}
+
+h2.banner{
+    background-color: #d32f2f;
+    color: white;
+    padding: 15px;
+    margin: 0px;
+    text-align: center;
+}
+h2.subbanner{
+    background-color: #ef9a9a;
+    color: white;
+    padding: 10px;
+    margin: 20px 0px;
+    font-size: 1.3em;
+    text-align: center;
+}
+form.MainForm{
+    display: flex;
+    background: whitesmoke;
+    box-shadow: 3px 3px 3px darkgrey;
+}
+
+.form-group-inline{
+    flex: 1;
+}
+
+.form-group-inline input,.form-group-inline button{
+    width: 90%;
+    margin: 15px;
+    padding: 10px;
+    background: white;
+    border: 1px solid grey;
+}
+.form-group-inline button{
+    background-color: dodgerblue;
+    cursor: pointer;
+    color: white;
+}
+
+.table table {
+    width: 100%;
+    background: whitesmoke;
+    box-shadow: 3px 3px 3px grey;
+    padding: 15px;
+    margin-top: -20px;
+    margin-bottom: 30px;
+}
+
+.table table, .table td, .table th {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 15px;
+}
+
+
+.add_to_cart{
+background: #1bcb1b;
+    color: white;
+    padding: 10px;
+    border: none;
+    box-shadow: 1px 1px 1px grey;
+    cursor: pointer;
+    width: 100%;
+}
+
+.remove_from_cart{
+    background: #f42f3f;
+        color: white;
+        padding: 10px;
+        border: none;
+        box-shadow: 1px 1px 1px grey;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .qty-plus{
+        background: orange;
+    color: white;
+    padding: 4px;
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    border: none;
+    box-shadow: 1px 1px 1px grey;
+    cursor: pointer;
+    }
+
+    .qty-minus{
+        background: rgb(245, 8, 123);
+    color: white;
+    padding: 4px;
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    border: none;
+    box-shadow: 1px 1px 1px grey;
+    cursor: pointer;
+    }
+
+    .qty{
+        text-align: center;
+    }
+
+    span.qty-span {
+        width: 40px;
+        height: 32px;
+        display: inline-block;
+        border: 1px solid grey;
+        padding: 3px;
+        font-size: 20px;
+    }

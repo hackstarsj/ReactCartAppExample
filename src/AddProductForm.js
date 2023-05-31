@@ -25,7 +25,7 @@ export default function AddProductForm(props) {
 
   return (
     <div>
-      <form onSubmit={onAddProducts}>
+      <form onSubmit={onAddProducts} className="MainForm">
         <div className="form-group-inline">
           <input type="text" name="product_title" placeholder="Product Title" />
         </div>

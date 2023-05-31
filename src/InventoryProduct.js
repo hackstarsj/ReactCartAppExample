@@ -1,7 +1,7 @@
 export default function InventoryProduct(props) {
   return (
     <div>
-      <h2>Inventory Products</h2>
+      <h2 className="subbanner">Inventory Products</h2>
       <div className="table">
         <table>
           <thead>
@@ -17,14 +17,14 @@ export default function InventoryProduct(props) {
           <tbody>
             {props.inventoryProducts.map((product,index)=>(
             <tr key={product.id}>
-              <th>{product.id}</th>
-              <th>{product.product_title}</th>
-              <th>{product.product_description}</th>
-              <th>{product.product_price}</th>
-              <th>{product.product_in_stock}</th>
-              <th>
+              <td>{product.id}</td>
+              <td>{product.product_title}</td>
+              <td>{product.product_description}</td>
+              <td>{product.product_price}</td>
+              <td>{product.product_in_stock}</td>
+              <td>
                 <button className="add_to_cart" onClick={()=>props.onAddToCart(product)}>ADD TO CART</button>
-              </th>
+              </td>
             </tr>
             ))}
           </tbody>
