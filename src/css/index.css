@@ -115,3 +115,17 @@ background: #1bcb1b;
         padding: 3px;
         font-size: 20px;
     }
+
+    .checkoutbtn{
+        background: dodgerblue;
+        color: white;
+        padding: 10px;
+        border: none;
+        box-shadow: 1px 1px 1px grey;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .grand_total{
+        text-align: right;
+    }

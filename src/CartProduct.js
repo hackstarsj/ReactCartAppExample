@@ -29,6 +29,12 @@ export default function CartProduct(props) {
                 </td>
               </tr>
             ))}
+            <tr>
+                <td colSpan={6} className="grand_total">Grand Total : {props.GrandTotal}</td>
+                <td>
+                    <button className="checkoutbtn" onClick={()=>{ if(window.confirm("Are you sure want to Checkout?")){ props.checkoutCall(); } }}>Checkout</button>
+                </td>
+            </tr>
           </tbody>
         </table>
       </div>

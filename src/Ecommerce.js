@@ -22,9 +22,25 @@ export default function EcommerceApp(){
         if(products!=null){
             setInventoryProducts(JSON.parse(products))
         }
+
+        let cartproductsLocal=localStorage.getItem("cartProducts");
+        if(cartproductsLocal!=null){
+            let cartJSON=JSON.parse(cartproductsLocal);
+            setCartProducts(cartJSON);
+            let gT=0;
+            for(let i=0;i<cartJSON.length;i++){
+                gT=gT+(parseInt(cartJSON[i].product_price)*cartJSON[i].quantity);
+            }
+            setGrandTotal(gT);
+        }
     },[])
 
     const onAddToCart=(product)=>{
+        if(!checkProductExist(product)){
+            alert("No Quantity Available")
+            return;
+        }
+        deductFromStocks(product);
         let findProduct=cartProducts.filter((item)=>{ return item.id==product.id?true:false });
         if(findProduct.length>0){
             let index=cartProducts.findIndex((item)=>{ return item.id==product.id?true:false })
@@ -41,12 +57,27 @@ export default function EcommerceApp(){
         calculateTotal();
     }
 
+    const deductFromStocks=(product)=>{
+        inventoryProducts=inventoryProducts.map((item)=>{ if(item.id==product.id){ item.product_in_stock=item.product_in_stock-1; } return item;  })
+        setInventoryProducts([...inventoryProducts]);
+        localStorage.setItem("allProducts",JSON.stringify(inventoryProducts));
+    }
+
+    const checkProductExist=(product)=>{
+       let productIndex=inventoryProducts.findIndex((item)=>{ return (item.id==product.id  && parseInt(item.product_in_stock)>0)?true:false });
+       if(productIndex!=-1){
+         return true;
+       }
+       return false;
+    }
+
     const calculateTotal=()=>{
         let gT=0;
         for(let i=0;i<cartProducts.length;i++){
             gT=gT+(parseInt(cartProducts[i].product_price)*cartProducts[i].quantity);
         }
         setGrandTotal(gT);
+        localStorage.setItem("cartProducts",JSON.stringify(cartProducts));
     }
 
     const removeFromCart=(index)=>{
@@ -64,12 +95,17 @@ export default function EcommerceApp(){
         calculateTotal();
     }
 
+    const checkoutCall=()=>{
+        cartProducts=[];
+        setCartProducts([]);
+        setGrandTotal(0);
+        localStorage.removeItem("cartProducts");
+    }
+
     return <div>
         <h2 className="banner">Eazy Cart Project</h2>
         <AddProductForm onAddProducts={onAddProducts}/>
         <InventoryProduct inventoryProducts={inventoryProducts} onAddToCart={onAddToCart}/>
-        <CartProduct cartProducts={cartProducts} removeFromCart={removeFromCart} qtyChange={qtyChange}/>
-        <br/>
-        <GrandTotal GrandTotal={grandTotal}/>
+        <CartProduct cartProducts={cartProducts} removeFromCart={removeFromCart} qtyChange={qtyChange} GrandTotal={grandTotal} checkoutCall={checkoutCall}/>
     </div>;
 }
