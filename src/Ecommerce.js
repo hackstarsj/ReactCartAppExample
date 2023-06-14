@@ -104,7 +104,7 @@ export default function EcommerceApp(){
 
     return <div>
         <h2 className="banner">Eazy Cart Project</h2>
-        <AddProductForm onAddProducts={onAddProducts}/>
+         <AddProductForm onAddProducts={onAddProducts}/>
         <InventoryProduct inventoryProducts={inventoryProducts} onAddToCart={onAddToCart}/>
         <CartProduct cartProducts={cartProducts} removeFromCart={removeFromCart} qtyChange={qtyChange} GrandTotal={grandTotal} checkoutCall={checkoutCall}/>
     </div>;
